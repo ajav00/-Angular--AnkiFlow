@@ -1,0 +1,31 @@
+@theme {
+  --color-primary: #006f69;
+  --color-primary-container: #79f3ea;
+  --color-secondary: #6d5e00;
+  --color-secondary-container: #ffe66d;
+  --color-tertiary: #8f5662;
+  --color-tertiary-container: #ffdee3;
+
+  --color-surface: #ffffff;
+  --color-surface-low: #f3fbf3;
+  --color-surface-container: #e2eae2;
+  --color-surface-high: #dce5dd;
+  --color-on-surface: #161d19;
+  --color-on-surface-muted: #4b4736;
+  --color-outline: #4b4736;
+  --color-outline-soft: #161d19;
+  --color-danger: #ba1a1a;
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1rem;
+
+  --border-strong: 2px solid var(--color-on-surface);
+  --shadow-card: 4px 4px 0 var(--color-on-surface);
+  --shadow-card-sm: 2px 2px 0 var(--color-on-surface);
+  --shadow-floating: 6px 6px 0 var(--color-on-surface);
+}

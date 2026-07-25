@@ -1,0 +1,35 @@
+<article class="flashcard" aria-label="Revealed flashcard">
+  <section class="flashcard__face flashcard__face--front">
+    <div class="face-label">
+      <span>Front</span>
+      <span class="language">English</span>
+    </div>
+
+    <h1>{{ card().front }}</h1>
+
+    <div class="hint">
+      <af-icon name="sparkles" [size]="18" />
+      <span>{{ card().hint }}</span>
+    </div>
+  </section>
+
+  <div class="reveal-divider">
+    <span>Answer revealed</span>
+  </div>
+
+  <section class="flashcard__face flashcard__face--back">
+    <div class="face-label">
+      <span>Back</span>
+      <span class="language">Spanish</span>
+    </div>
+
+    <h2>{{ card().back }}</h2>
+    <p>{{ card().example }}</p>
+
+    <div class="tags">
+      @for (tag of card().tags; track tag) {
+        <af-badge variant="neutral">#{{ tag }}</af-badge>
+      }
+    </div>
+  </section>
+</article>

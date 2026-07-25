@@ -1,0 +1,24 @@
+<header class="session-header">
+  <div class="session-header__top">
+    <a [routerLink]="['/decks', session().deck.id]" class="exit-link">
+      <span aria-hidden="true">←</span>
+      Exit session
+    </a>
+
+    <div class="deck-name">
+      <span class="deck-name__icon">
+        <af-icon name="book" [size]="18" />
+      </span>
+      <strong>{{ session().deck.title }}</strong>
+    </div>
+
+    <span class="session-header__count">
+      {{ session().currentCard }} / {{ session().totalCards }}
+    </span>
+  </div>
+
+  <div class="session-header__progress">
+    <af-progress-bar [value]="progressPercentage()" label="Study session progress" />
+    <span>{{ progressPercentage() }}% complete</span>
+  </div>
+</header>

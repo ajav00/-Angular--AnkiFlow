@@ -1,0 +1,177 @@
+.note-type {
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: white;
+  padding: clamp(1.2rem, 3vw, 1.7rem);
+  box-shadow: var(--shadow-card);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.step {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-secondary-container);
+  font-weight: 900;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.eyebrow {
+  color: var(--color-secondary);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.section-heading p {
+  margin: 0.35rem 0 0;
+  color: var(--color-on-surface-muted);
+  font-size: 0.7rem;
+}
+
+.note-type__selector {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.note-type__selector span {
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+select {
+  min-height: 2.8rem;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-low);
+  padding: 0 0.8rem;
+  font-weight: 700;
+}
+
+.field-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.note-field {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--color-on-surface);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-low);
+  padding: 0.7rem;
+}
+
+.note-field__handle {
+  color: var(--color-outline);
+  font-weight: 900;
+  letter-spacing: -0.15em;
+}
+
+.note-field__order {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
+  border: 1px solid var(--color-on-surface);
+  border-radius: 0.35rem;
+  background: white;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.note-field strong {
+  font-size: 0.72rem;
+}
+
+.note-field p {
+  margin: 0.2rem 0 0;
+  color: var(--color-on-surface-muted);
+  font-size: 0.58rem;
+}
+
+.requirement {
+  border: 1px solid var(--color-on-surface);
+  border-radius: 0.35rem;
+  background: white;
+  padding: 0.25rem 0.4rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+.note-field button {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  place-items: center;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: white;
+}
+
+.add-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-secondary-container);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.anki-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-container);
+  padding: 0.9rem;
+}
+
+.anki-note strong {
+  font-size: 0.7rem;
+}
+
+.anki-note p {
+  margin: 0.25rem 0 0;
+  color: var(--color-primary);
+  font-size: 0.6rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 36rem) {
+  .note-field {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .note-field__handle,
+  .requirement {
+    display: none;
+  }
+}

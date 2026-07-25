@@ -1,0 +1,45 @@
+<div class="card-list">
+  <div class="card-list__header" aria-hidden="true">
+    <span>Front</span>
+    <span>Back</span>
+    <span>State</span>
+    <span>Schedule</span>
+    <span>Actions</span>
+  </div>
+
+  @for (card of cards(); track card.id) {
+    <article class="flashcard">
+      <div class="flashcard__face" data-label="Front">
+        <strong>{{ card.front }}</strong>
+        <div class="flashcard__tags">
+          @for (tag of card.tags; track tag) {
+            <span>#{{ tag }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="flashcard__face" data-label="Back">
+        <span>{{ card.back }}</span>
+      </div>
+
+      <div data-label="State">
+        <af-badge [variant]="badgeVariant(card.state)">{{ card.state }}</af-badge>
+      </div>
+
+      <div class="flashcard__schedule" data-label="Schedule">
+        <strong>{{ card.dueLabel }}</strong>
+        <span>{{ card.intervalLabel }}</span>
+      </div>
+
+      <div class="flashcard__actions" data-label="Actions">
+        <button
+          type="button"
+          [routerLink]="['/decks', deckId(), 'cards', card.id, 'edit']"
+          aria-label="Edit card with front {{ card.front }}"
+        >
+          <af-icon name="settings" [size]="17" />
+        </button>
+      </div>
+    </article>
+  }
+</div>

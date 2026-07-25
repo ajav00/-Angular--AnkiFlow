@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 8% 5%, rgb(255 230 109 / 20%), transparent 28rem),
+    radial-gradient(circle at 92% 90%, rgb(121 243 234 / 22%), transparent 30rem),
+    var(--color-surface);
+}
+
+.study-page {
+  display: grid;
+  width: min(100%, 78rem);
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.study-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.28fr);
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.study-layout > div {
+  min-width: 0;
+}
+
+@media (max-width: 64rem) {
+  .study-layout {
+    grid-template-columns: 1fr;
+  }
+}

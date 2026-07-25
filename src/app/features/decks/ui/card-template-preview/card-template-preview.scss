@@ -1,0 +1,106 @@
+.preview {
+  position: sticky;
+  top: 1.5rem;
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-low);
+  padding: 1.2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.eyebrow {
+  color: var(--color-tertiary);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.preview > p {
+  margin: 0.45rem 0 1rem;
+  color: var(--color-on-surface-muted);
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.preview-card {
+  overflow: hidden;
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.preview-card__face {
+  display: grid;
+  min-height: 7.5rem;
+  align-content: center;
+  justify-items: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.preview-card__face--front {
+  background: color-mix(in srgb, var(--color-secondary-container) 28%, white);
+}
+
+.preview-card__face--back {
+  background: color-mix(in srgb, var(--color-primary-container) 38%, white);
+}
+
+.preview-card__face span {
+  margin-bottom: 0.5rem;
+  color: var(--color-on-surface-muted);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.preview-card__face strong {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.preview-card__divider {
+  border-block: var(--border-strong);
+  background: var(--color-tertiary-container);
+  padding: 0.35rem;
+  font-size: 0.55rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.preview__details {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  font-size: 0.62rem;
+}
+
+.preview__details span {
+  color: var(--color-on-surface-muted);
+}
+
+.preview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 64rem) {
+  .preview {
+    position: static;
+  }
+}

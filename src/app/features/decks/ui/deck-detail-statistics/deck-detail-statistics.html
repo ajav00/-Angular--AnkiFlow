@@ -1,0 +1,9 @@
+<section class="statistics" aria-label="Deck statistics">
+  @for (statistic of statistics(); track statistic.label) {
+    <article [class]="'statistic statistic--' + statistic.tone">
+      <span>{{ statistic.label }}</span>
+      <strong>{{ statistic.value }}</strong>
+      <small>{{ statistic.detail }}</small>
+    </article>
+  }
+</section>

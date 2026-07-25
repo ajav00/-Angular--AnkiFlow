@@ -1,0 +1,143 @@
+:host {
+  display: block;
+}
+
+.flashcard-form-page {
+  display: grid;
+  width: min(100%, 75rem);
+  gap: 1.7rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.page-header,
+.page-header__actions {
+  display: flex;
+  align-items: center;
+}
+
+.page-header {
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  color: var(--color-on-surface-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--color-primary);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0.3rem 0 0;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.page-header p {
+  max-width: 40rem;
+  margin: 0.65rem 0 0;
+  color: var(--color-on-surface-muted);
+  font-size: 0.82rem;
+}
+
+.page-header__actions {
+  flex: 0 0 auto;
+  gap: 0.7rem;
+}
+
+.cancel-link {
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: white;
+  padding: 0.85rem 1.1rem;
+  color: var(--color-on-surface);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.34fr);
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.form-sections {
+  display: grid;
+  min-width: 0;
+  gap: 1.5rem;
+}
+
+.mobile-actions {
+  display: none;
+}
+
+@media (max-width: 64rem) {
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 44rem) {
+  .flashcard-form-page {
+    padding-bottom: 7rem;
+  }
+
+  .page-header {
+    display: block;
+  }
+
+  .page-header__actions {
+    display: none;
+  }
+
+  .mobile-actions {
+    position: fixed;
+    z-index: 5;
+    right: 0.75rem;
+    bottom: 5.1rem;
+    left: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0.7rem;
+    border: var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-low);
+    padding: 0.7rem;
+    box-shadow: var(--shadow-floating);
+  }
+
+  .mobile-actions > a {
+    display: grid;
+    place-items: center;
+    border: var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--color-on-surface);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}

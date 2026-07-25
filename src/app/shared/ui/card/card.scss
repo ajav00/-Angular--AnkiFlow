@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.card,
+:host {
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-card);
+}
+
+:host(.card--primary) {
+  background: var(--color-primary-container);
+}
+
+:host(.card--success) {
+  background: var(--color-secondary-container);
+}
+
+:host(.card--warning) {
+  background: var(--color-tertiary-container);
+}

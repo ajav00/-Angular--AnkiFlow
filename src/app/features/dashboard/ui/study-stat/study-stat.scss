@@ -1,0 +1,71 @@
+:host {
+  display: block;
+}
+
+.stat {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding: 1.35rem;
+}
+
+.stat__dot {
+  position: absolute;
+  top: -1.5rem;
+  right: -1.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.09;
+}
+
+p,
+small {
+  color: var(--color-on-surface-muted);
+}
+
+p {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+
+strong {
+  display: block;
+  margin: 0.55rem 0 0.35rem;
+  color: var(--color-on-surface);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+small {
+  font-size: 0.68rem;
+}
+
+:host(.tone--primary) {
+  color: var(--color-primary);
+
+  .stat {
+    background: var(--color-primary-container);
+  }
+}
+
+:host(.tone--success) {
+  color: var(--color-secondary);
+
+  .stat {
+    background: var(--color-secondary-container);
+  }
+}
+
+:host(.tone--warning) {
+  color: var(--color-tertiary);
+
+  .stat {
+    background: var(--color-tertiary-container);
+  }
+}

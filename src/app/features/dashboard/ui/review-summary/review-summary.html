@@ -1,0 +1,32 @@
+<af-card class="review-summary">
+  <div class="review-summary__header">
+    <div>
+      <af-badge variant="info">Today's focus</af-badge>
+      <h2>Ready for a quick review?</h2>
+    </div>
+    <span class="review-summary__time">
+      <af-icon name="clock" [size]="17" />
+      About {{ summary().estimatedMinutes }} min
+    </span>
+  </div>
+
+  <div class="review-summary__counts">
+    <div>
+      <strong>{{ summary().newCards }}</strong>
+      <span>New</span>
+    </div>
+    <div>
+      <strong>{{ summary().learningCards }}</strong>
+      <span>Learning</span>
+    </div>
+    <div>
+      <strong>{{ summary().reviewCards }}</strong>
+      <span>Review</span>
+    </div>
+  </div>
+
+  <af-button variant="secondary">
+    Review all {{ totalCards() }} cards
+    <af-icon name="arrow-right" [size]="17" />
+  </af-button>
+</af-card>

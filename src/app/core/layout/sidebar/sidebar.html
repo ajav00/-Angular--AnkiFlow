@@ -1,0 +1,53 @@
+<aside class="sidebar" aria-label="Primary navigation">
+  <a class="brand" routerLink="/" aria-label="AnkiFlow dashboard">
+    <span class="brand__mark" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="brand__name">AnkiFlow</span>
+  </a>
+
+  <nav class="navigation">
+    <p class="navigation__label">Workspace</p>
+    @for (item of primaryNavigation; track item.label) {
+      <a
+        class="navigation__item"
+        [class.navigation__item--disabled]="item.disabled"
+        [routerLink]="item.disabled ? null : item.route"
+        routerLinkActive="navigation__item--active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+        [attr.aria-disabled]="item.disabled || null"
+      >
+        <af-icon [name]="item.icon" />
+        <span>{{ item.label }}</span>
+        @if (item.disabled) {
+          <span class="navigation__soon">Soon</span>
+        }
+      </a>
+    }
+
+    <p class="navigation__label navigation__label--spaced">Account</p>
+    @for (item of secondaryNavigation; track item.label) {
+      <a
+        class="navigation__item"
+        [class.navigation__item--disabled]="item.disabled"
+        [routerLink]="item.disabled ? null : item.route"
+        [attr.aria-disabled]="item.disabled || null"
+      >
+        <af-icon [name]="item.icon" />
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="streak-card">
+    <div class="streak-card__icon">
+      <af-icon name="flame" [size]="22" />
+    </div>
+    <div>
+      <strong>12 day streak</strong>
+      <span>Keep your flow going!</span>
+    </div>
+  </div>
+</aside>

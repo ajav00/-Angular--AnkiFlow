@@ -1,0 +1,34 @@
+<header class="deck-header">
+  <a class="back-link" routerLink="/decks">
+    <span aria-hidden="true">←</span>
+    Back to decks
+  </a>
+
+  <div class="deck-header__content">
+    <div class="deck-header__identity">
+      <span class="deck-header__book">
+        <af-icon name="book" [size]="36" />
+      </span>
+
+      <div>
+        <span class="eyebrow">{{ deck().category }}</span>
+        <h1>{{ deck().title }}</h1>
+        <p>{{ deck().description }}</p>
+        <span class="language-pair">
+          {{ deck().termLanguage }} → {{ deck().definitionLanguage }}
+        </span>
+      </div>
+    </div>
+
+    <div class="deck-header__actions">
+      <a class="edit-link" [routerLink]="['/decks', deck().id, 'edit']">
+        <af-icon name="settings" [size]="18" />
+        Edit deck
+      </a>
+      <a class="study-link" routerLink="/study">
+        <af-icon name="study" [size]="18" />
+        Study now
+      </a>
+    </div>
+  </div>
+</header>

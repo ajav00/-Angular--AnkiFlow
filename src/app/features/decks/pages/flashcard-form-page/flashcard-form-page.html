@@ -1,0 +1,44 @@
+<div class="flashcard-form-page">
+  <header class="page-header">
+    <div>
+      <a [routerLink]="['/decks', card.deckId]" class="back-link">
+        <span aria-hidden="true">←</span>
+        Back to {{ card.deckTitle }}
+      </a>
+      <span class="eyebrow">{{ isCreateMode ? 'New flashcard' : 'Card editor' }}</span>
+      <h1>{{ isCreateMode ? 'Add a flashcard' : 'Edit flashcard' }}</h1>
+      <p>
+        {{
+          isCreateMode
+            ? 'Capture one focused idea using the fields defined by this deck.'
+            : 'Update this note and review how its generated card will appear.'
+        }}
+      </p>
+    </div>
+
+    <div class="page-header__actions">
+      <a [routerLink]="['/decks', card.deckId]" class="cancel-link">Cancel</a>
+      @if (isCreateMode) {
+        <af-button variant="secondary">Save and add another</af-button>
+      }
+      <af-button>
+        <af-icon name="plus" [size]="18" />
+        {{ isCreateMode ? 'Add card' : 'Save changes' }}
+      </af-button>
+    </div>
+  </header>
+
+  <div class="form-layout">
+    <div class="form-sections">
+      <af-flashcard-content-form [card]="card" />
+      <af-flashcard-metadata-form [card]="card" />
+    </div>
+
+    <af-flashcard-form-preview [card]="card" />
+  </div>
+
+  <footer class="mobile-actions">
+    <a [routerLink]="['/decks', card.deckId]">Cancel</a>
+    <af-button>{{ isCreateMode ? 'Add card' : 'Save changes' }}</af-button>
+  </footer>
+</div>

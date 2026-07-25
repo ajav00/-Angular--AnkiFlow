@@ -1,0 +1,143 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.deck-card {
+  height: 100%;
+  overflow: hidden;
+  transition:
+    translate 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.deck-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-card-sm);
+}
+
+.deck-card__cover {
+  position: relative;
+  display: flex;
+  height: 8.5rem;
+  overflow: hidden;
+  align-items: end;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--deck-color) 24%, white);
+  padding: 1rem;
+}
+
+.deck-card__shape {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--deck-color);
+  opacity: 0.18;
+}
+
+.deck-card__shape--one {
+  top: -3rem;
+  right: -1.5rem;
+  width: 9rem;
+  height: 9rem;
+}
+
+.deck-card__shape--two {
+  bottom: -2.5rem;
+  left: 2.5rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+.deck-card__book {
+  position: relative;
+  display: grid;
+  width: 4.25rem;
+  height: 4.75rem;
+  place-items: center;
+  border: var(--border-strong);
+  border-radius: 0.65rem 1rem 1rem 0.65rem;
+  background: var(--deck-color);
+  color: white;
+  rotate: -5deg;
+  box-shadow: var(--shadow-card-sm);
+}
+
+.deck-card__body {
+  padding: 1.25rem;
+}
+
+.deck-card__heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  font-weight: 900;
+}
+
+.deck-card__heading span {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--color-on-surface-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.deck-card__heading button {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 2px solid var(--color-on-surface);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--color-on-surface-muted);
+}
+
+.deck-card__heading button:hover {
+  background: color-mix(in srgb, var(--deck-color) 15%, white);
+  color: var(--deck-color);
+}
+
+p {
+  min-height: 2.8rem;
+  margin: 0.9rem 0 1.15rem;
+  color: var(--color-on-surface-muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.deck-card__progress-copy,
+.deck-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deck-card__progress-copy {
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+}
+
+.deck-card__progress-copy span {
+  color: var(--color-on-surface-muted);
+}
+
+.deck-card__footer {
+  margin-top: 1rem;
+  color: var(--color-outline);
+  font-size: 0.64rem;
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-card {
+    transition: none;
+  }
+}

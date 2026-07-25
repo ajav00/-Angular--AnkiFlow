@@ -1,0 +1,11 @@
+@utility focus-ring {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@utility surface-card {
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-card);
+}

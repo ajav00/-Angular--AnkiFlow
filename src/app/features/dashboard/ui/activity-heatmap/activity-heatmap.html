@@ -1,0 +1,26 @@
+<af-card class="activity">
+  <div class="activity__header">
+    <div>
+      <span class="eyebrow">Consistency</span>
+      <h2>Your study rhythm</h2>
+    </div>
+    <div class="legend" aria-label="Activity intensity legend">
+      <span>Less</span>
+      @for (level of levels; track level) {
+        <i [class]="'cell cell--' + level"></i>
+      }
+      <span>More</span>
+    </div>
+  </div>
+
+  <div class="heatmap" aria-label="Study activity for July 2026">
+    @for (day of activity(); track day.date) {
+      <span
+        [class]="'cell cell--' + day.intensity"
+        [title]="day.date + ': ' + day.reviewCount + ' reviews'"
+      ></span>
+    }
+  </div>
+
+  <p>You studied on <strong>21 days</strong> this month. Four more days than June.</p>
+</af-card>

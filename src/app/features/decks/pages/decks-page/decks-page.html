@@ -1,0 +1,49 @@
+<div class="decks-page">
+  <header class="page-header">
+    <div>
+      <span class="eyebrow">Your collection</span>
+      <h1>My decks</h1>
+      <p>Organize your knowledge and keep every study goal within reach.</p>
+    </div>
+
+    <div class="page-header__actions">
+      <af-button variant="secondary">
+        <af-icon name="upload" [size]="18" />
+        Import from Anki
+      </af-button>
+      <a class="primary-link" routerLink="/decks/new">
+        <af-icon name="plus" [size]="18" />
+        New deck
+      </a>
+    </div>
+  </header>
+
+  <section class="summary" aria-label="Deck library summary">
+    <div>
+      <span>Total decks</span>
+      <strong>{{ library.summary.totalDecks }}</strong>
+    </div>
+    <div>
+      <span>Total cards</span>
+      <strong>{{ library.summary.totalCards }}</strong>
+    </div>
+    <div>
+      <span>Due today</span>
+      <strong>{{ library.summary.dueToday }}</strong>
+    </div>
+  </section>
+
+  <af-deck-library-toolbar />
+
+  <section aria-labelledby="deck-grid-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">All decks</span>
+        <h2 id="deck-grid-title">Ready when you are</h2>
+      </div>
+      <span>{{ library.decks.length }} collections</span>
+    </div>
+
+    <af-deck-library-grid [decks]="library.decks" />
+  </section>
+</div>

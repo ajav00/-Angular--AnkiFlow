@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <af-welcome-banner [user]="dashboard.user" [dueCards]="dashboard.reviewSummary.reviewCards" />
+
+  <section class="overview" aria-labelledby="overview-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">At a glance</span>
+        <h2 id="overview-title">Your learning overview</h2>
+      </div>
+      <span class="section-heading__date">Week of July 20</span>
+    </div>
+
+    <div class="overview__grid">
+      <af-review-summary [summary]="dashboard.reviewSummary" />
+      <div class="statistics">
+        @for (statistic of dashboard.statistics; track statistic.label) {
+          <af-study-stat [statistic]="statistic" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="decks-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Continue learning</span>
+        <h2 id="decks-title">Your active decks</h2>
+      </div>
+      <af-button variant="ghost" size="sm">
+        View all decks
+        <af-icon name="arrow-right" [size]="16" />
+      </af-button>
+    </div>
+    <af-deck-progress-grid [decks]="dashboard.recentDecks" />
+  </section>
+
+  <section class="insights" aria-label="Study insights and quick actions">
+    <af-activity-heatmap [activity]="dashboard.activity" />
+    <af-quick-actions />
+  </section>
+</div>

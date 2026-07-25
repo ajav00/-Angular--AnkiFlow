@@ -1,0 +1,30 @@
+<aside class="preview" aria-labelledby="preview-title">
+  <span class="eyebrow">Live preview</span>
+  <h2 id="preview-title">Card template</h2>
+  <p>Example content shows how the current fields will appear during study.</p>
+
+  <div class="preview-card">
+    <div class="preview-card__face preview-card__face--front">
+      <span>Front</span>
+      <strong>{{ deck().previewFront }}</strong>
+    </div>
+    <div class="preview-card__divider">Answer</div>
+    <div class="preview-card__face preview-card__face--back">
+      <span>Back</span>
+      <strong>{{ deck().previewBack }}</strong>
+    </div>
+  </div>
+
+  <div class="preview__details">
+    <span>Note type</span>
+    <strong>{{ deck().noteTypeName }}</strong>
+    <span>Fields</span>
+    <strong>{{ deck().fields.length }}</strong>
+  </div>
+
+  <div class="preview__tags">
+    @for (tag of deck().tags; track tag) {
+      <af-badge variant="neutral">#{{ tag }}</af-badge>
+    }
+  </div>
+</aside>

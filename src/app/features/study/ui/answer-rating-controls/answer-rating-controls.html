@@ -1,0 +1,19 @@
+<section class="rating-controls" aria-labelledby="rating-title">
+  <div class="rating-controls__heading">
+    <div>
+      <span class="eyebrow">Choose honestly</span>
+      <h2 id="rating-title">How well did you remember?</h2>
+    </div>
+    <span>Use keys 1–4</span>
+  </div>
+
+  <div class="ratings">
+    @for (rating of ratings(); track rating.label) {
+      <button [class]="'rating rating--' + rating.tone" type="button">
+        <kbd>{{ rating.shortcut }}</kbd>
+        <strong>{{ rating.label }}</strong>
+        <span>{{ rating.intervalLabel }}</span>
+      </button>
+    }
+  </div>
+</section>

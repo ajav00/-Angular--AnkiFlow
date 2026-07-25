@@ -1,0 +1,12 @@
+<main class="study-page">
+  <af-study-session-header [session]="session" />
+
+  <div class="study-layout">
+    <div>
+      <af-study-flashcard [card]="session.card" />
+      <af-answer-rating-controls [ratings]="session.ratings" />
+    </div>
+
+    <af-study-session-summary [session]="session" />
+  </div>
+</main>

@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.track {
+  height: 0.625rem;
+  overflow: hidden;
+  border: 2px solid var(--color-on-surface);
+  border-radius: 999px;
+  background: var(--color-surface-container);
+}
+
+.fill {
+  display: block;
+  width: var(--progress-value);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-primary);
+  transition: width 400ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

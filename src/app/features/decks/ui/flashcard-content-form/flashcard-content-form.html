@@ -1,0 +1,29 @@
+<section class="content-form" aria-labelledby="content-title">
+  <div class="section-heading">
+    <span class="step">1</span>
+    <div>
+      <span class="eyebrow">Card content</span>
+      <h2 id="content-title">Fill the note fields</h2>
+      <p>Each field belongs to the selected note type and can later map to an Anki model.</p>
+    </div>
+  </div>
+
+  <div class="field-list">
+    @for (field of card().fields; track field.id) {
+      <label class="field">
+        <span class="field__label">
+          <strong>{{ field.label }}</strong>
+          <span>{{ field.required ? 'Required' : 'Optional' }}</span>
+        </span>
+
+        @if (field.multiline) {
+          <textarea [rows]="field.id === 'example' ? 3 : 4" [value]="field.value"></textarea>
+        } @else {
+          <input type="text" [value]="field.value" />
+        }
+
+        <small>{{ field.description }}</small>
+      </label>
+    }
+  </div>
+</section>

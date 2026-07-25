@@ -1,0 +1,30 @@
+:host {
+  display: inline-flex;
+}
+
+.icon-button {
+  display: inline-grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--color-on-surface-muted);
+  box-shadow: var(--shadow-card-sm);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.icon-button:hover {
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.icon-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 3px;
+}

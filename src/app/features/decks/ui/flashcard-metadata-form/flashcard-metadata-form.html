@@ -1,0 +1,50 @@
+<section class="metadata" aria-labelledby="metadata-title">
+  <div class="section-heading">
+    <span class="step">2</span>
+    <div>
+      <span class="eyebrow">Organization</span>
+      <h2 id="metadata-title">Card metadata</h2>
+      <p>Control how this note is categorized and generated.</p>
+    </div>
+  </div>
+
+  <label class="field">
+    <span>Note type</span>
+    <select>
+      <option selected>{{ card().noteType }}</option>
+      <option>Basic</option>
+      <option>Basic and reversed</option>
+      <option>Cloze</option>
+    </select>
+    <small>Changing the type may change the available fields.</small>
+  </label>
+
+  <div class="field">
+    <span>Tags</span>
+    <div class="tag-input">
+      @for (tag of card().tags; track tag) {
+        <span>#{{ tag }} <button type="button" aria-label="Remove {{ tag }}">×</button></span>
+      }
+      <input type="text" placeholder="Add a tag" aria-label="Add a tag" />
+    </div>
+  </div>
+
+  <label class="toggle-row">
+    <span>
+      <strong>Generate reverse card</strong>
+      <small>Create a second card with back and front exchanged.</small>
+    </span>
+    <input type="checkbox" />
+  </label>
+
+  <aside class="duplicate-notice">
+    <span class="duplicate-notice__icon">
+      <af-icon name="search" [size]="19" />
+    </span>
+    <div>
+      <strong>{{ card().duplicateMatchCount }} possible duplicate found</strong>
+      <p>A note with a similar front already exists in this deck.</p>
+      <button type="button">Review match</button>
+    </div>
+  </aside>
+</section>

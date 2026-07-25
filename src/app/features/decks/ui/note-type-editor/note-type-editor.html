@@ -1,0 +1,54 @@
+<section class="note-type" aria-labelledby="note-type-title">
+  <div class="section-heading">
+    <span class="step">2</span>
+    <div>
+      <span class="eyebrow">Card structure</span>
+      <h2 id="note-type-title">Note type and fields</h2>
+      <p>Define the reusable information stored by every note.</p>
+    </div>
+  </div>
+
+  <label class="note-type__selector">
+    <span>Note type</span>
+    <select>
+      <option selected>{{ deck().noteTypeName }}</option>
+      <option>Basic</option>
+      <option>Basic and reversed</option>
+      <option>Basic with optional reverse</option>
+      <option>Cloze</option>
+    </select>
+  </label>
+
+  <div class="field-list">
+    @for (field of deck().fields; track field.id; let index = $index) {
+      <article class="note-field">
+        <span class="note-field__handle" aria-hidden="true">⋮⋮</span>
+        <span class="note-field__order">{{ index + 1 }}</span>
+        <div>
+          <strong>{{ field.name }}</strong>
+          <p>{{ field.description }}</p>
+        </div>
+        <span class="requirement">{{ field.required ? 'Required' : 'Optional' }}</span>
+        <button type="button" aria-label="Configure {{ field.name }}">
+          <af-icon name="settings" [size]="17" />
+        </button>
+      </article>
+    }
+  </div>
+
+  <button class="add-field" type="button">
+    <af-icon name="plus" [size]="17" />
+    Add field
+  </button>
+
+  <aside class="anki-note">
+    <af-icon name="upload" [size]="21" />
+    <div>
+      <strong>Designed for future Anki compatibility</strong>
+      <p>
+        Note types and ordered fields can later map to imported Anki models without changing this
+        form.
+      </p>
+    </div>
+  </aside>
+</section>

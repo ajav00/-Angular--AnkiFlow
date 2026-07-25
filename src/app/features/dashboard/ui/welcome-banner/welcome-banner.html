@@ -1,0 +1,29 @@
+<section class="welcome-banner">
+  <div class="welcome-banner__copy">
+    <span class="eyebrow">Your learning space</span>
+    <h1>Good afternoon, {{ user().name }}!</h1>
+    <p>
+      Small steps create lasting knowledge. You have
+      <strong>{{ dueCards() }} cards</strong> waiting for review today.
+    </p>
+    <af-button size="lg">
+      <af-icon name="study" [size]="19" />
+      Start today's review
+    </af-button>
+  </div>
+
+  <div class="illustration" aria-hidden="true">
+    <span class="illustration__sun"></span>
+    <span class="illustration__card illustration__card--back">
+      <i></i>
+      <i></i>
+    </span>
+    <span class="illustration__card illustration__card--front">
+      <af-icon name="book" [size]="38" />
+      <i></i>
+      <i></i>
+    </span>
+    <span class="illustration__spark illustration__spark--one">✦</span>
+    <span class="illustration__spark illustration__spark--two">✦</span>
+  </div>
+</section>

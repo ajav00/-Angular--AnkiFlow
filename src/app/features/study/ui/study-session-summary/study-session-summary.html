@@ -1,0 +1,43 @@
+<aside class="session-summary" aria-label="Current session summary">
+  <span class="eyebrow">This session</span>
+  <h2>Keep your rhythm</h2>
+
+  <div class="summary-list">
+    <div>
+      <span class="summary-icon summary-icon--aqua">
+        <af-icon name="study" [size]="19" />
+      </span>
+      <span>
+        <strong>{{ session().reviewedCards }}</strong>
+        Reviewed
+      </span>
+    </div>
+
+    <div>
+      <span class="summary-icon summary-icon--yellow">
+        <af-icon name="sparkles" [size]="19" />
+      </span>
+      <span>
+        <strong>{{ session().correctCards }}</strong>
+        Remembered
+      </span>
+    </div>
+
+    <div>
+      <span class="summary-icon summary-icon--pink">
+        <af-icon name="clock" [size]="19" />
+      </span>
+      <span>
+        <strong>{{ session().estimatedMinutesRemaining }} min</strong>
+        Remaining
+      </span>
+    </div>
+  </div>
+
+  <div class="shortcut-card">
+    <strong>Keyboard shortcuts</strong>
+    <span><kbd>Space</kbd> reveal answer</span>
+    <span><kbd>1–4</kbd> rate recall</span>
+    <span><kbd>H</kbd> show hint</span>
+  </div>
+</aside>

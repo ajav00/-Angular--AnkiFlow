@@ -1,0 +1,18 @@
+<af-card class="quick-actions">
+  <span class="eyebrow">Shortcuts</span>
+  <h2>Keep your momentum</h2>
+  <div class="quick-actions__list">
+    @for (action of actions; track action.label) {
+      <button type="button">
+        <span [class]="'action-icon action-icon--' + action.tone">
+          <af-icon [name]="action.icon" [size]="19" />
+        </span>
+        <span>
+          <strong>{{ action.label }}</strong>
+          <small>{{ action.description }}</small>
+        </span>
+        <af-icon class="arrow" name="arrow-right" [size]="17" />
+      </button>
+    }
+  </div>
+</af-card>

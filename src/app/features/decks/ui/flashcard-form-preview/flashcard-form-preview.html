@@ -1,0 +1,30 @@
+<aside class="preview" aria-labelledby="card-preview-title">
+  <span class="eyebrow">Study preview</span>
+  <h2 id="card-preview-title">How it will look</h2>
+  <p>Preview uses the current template and example field values.</p>
+
+  <div class="preview-card">
+    <section class="preview-card__face preview-card__face--front">
+      <span>Front</span>
+      <strong>{{ card().previewFront }}</strong>
+    </section>
+    <div class="preview-card__divider">Reveal answer</div>
+    <section class="preview-card__face preview-card__face--back">
+      <span>Back</span>
+      <strong>{{ card().previewBack }}</strong>
+    </section>
+  </div>
+
+  <div class="preview__tags">
+    @for (tag of card().tags; track tag) {
+      <af-badge variant="neutral">#{{ tag }}</af-badge>
+    }
+  </div>
+
+  <div class="preview__meta">
+    <span>Deck</span>
+    <strong>{{ card().deckTitle }}</strong>
+    <span>Note type</span>
+    <strong>{{ card().noteType }}</strong>
+  </div>
+</aside>

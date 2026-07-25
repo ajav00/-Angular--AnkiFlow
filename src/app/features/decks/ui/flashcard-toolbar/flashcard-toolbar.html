@@ -1,0 +1,25 @@
+<div class="toolbar" aria-label="Flashcard controls">
+  <label class="search">
+    <af-icon name="search" [size]="18" />
+    <span class="sr-only">Search cards</span>
+    <input type="search" placeholder="Search front, back, or tags" />
+  </label>
+
+  <div class="toolbar__actions">
+    <label>
+      <span class="sr-only">Filter cards by state</span>
+      <select>
+        <option>All states</option>
+        <option>New</option>
+        <option>Learning</option>
+        <option>Review</option>
+        <option>Suspended</option>
+      </select>
+    </label>
+
+    <a class="add-card-link" [routerLink]="['/decks', deckId(), 'cards', 'new']">
+      <af-icon name="plus" [size]="17" />
+      Add card
+    </a>
+  </div>
+</div>

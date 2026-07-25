@@ -1,0 +1,17 @@
+:host {
+  display: inline-flex;
+}
+
+.avatar {
+  display: inline-grid;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  place-items: center;
+  border: var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: white;
+  font-size: calc(var(--avatar-size) * 0.32);
+  font-weight: 800;
+  box-shadow: var(--shadow-card-sm);
+}

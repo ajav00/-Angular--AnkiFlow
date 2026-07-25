@@ -1,0 +1,31 @@
+:host {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border: 2px solid var(--color-on-surface);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+:host(.badge--neutral) {
+  background: white;
+  color: var(--color-on-surface-muted);
+}
+
+:host(.badge--info) {
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+}
+
+:host(.badge--success) {
+  background: var(--color-secondary-container);
+  color: var(--color-secondary);
+}
+
+:host(.badge--warning) {
+  background: var(--color-tertiary-container);
+  color: var(--color-tertiary);
+}

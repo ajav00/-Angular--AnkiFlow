@@ -1,0 +1,33 @@
+<af-card class="deck-card">
+  <div class="deck-card__cover">
+    <span class="deck-card__shape deck-card__shape--one"></span>
+    <span class="deck-card__shape deck-card__shape--two"></span>
+    <span class="deck-card__book"><af-icon name="book" [size]="30" /></span>
+    <af-badge variant="neutral">{{ deck().dueCards }} due</af-badge>
+  </div>
+
+  <div class="deck-card__body">
+    <div class="deck-card__heading">
+      <div>
+        <h3>{{ deck().title }}</h3>
+        <span>{{ deck().termLanguage }} → {{ deck().definitionLanguage }}</span>
+      </div>
+      <button type="button" aria-label="Open {{ deck().title }}">
+        <af-icon name="arrow-right" [size]="18" />
+      </button>
+    </div>
+
+    <p>{{ deck().description }}</p>
+
+    <div class="deck-card__progress-copy">
+      <span>Mastery</span>
+      <strong>{{ deck().masteryPercentage }}%</strong>
+    </div>
+    <af-progress-bar [value]="deck().masteryPercentage" [label]="deck().title + ' mastery'" />
+
+    <div class="deck-card__footer">
+      <span>{{ deck().totalCards }} cards</span>
+      <span>{{ deck().dueCards }} ready to review</span>
+    </div>
+  </div>
+</af-card>

@@ -1,0 +1,8 @@
+<button
+  class="button"
+  [class]="'button button--' + variant() + ' button--' + size()"
+  [attr.type]="type()"
+  [disabled]="disabled()"
+>
+  <ng-content />
+</button>
