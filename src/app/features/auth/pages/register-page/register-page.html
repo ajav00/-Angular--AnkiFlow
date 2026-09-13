@@ -1,0 +1,39 @@
+<div class="login-page">
+  <af-card class="login-card">
+    <span class="eyebrow">Get started</span>
+    <h1>Create your account</h1>
+    <p>Start building decks and studying with spaced repetition.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label class="field">
+        <span>Username</span>
+        <input type="text" formControlName="userName" autocomplete="username" />
+      </label>
+
+      <label class="field">
+        <span>First name</span>
+        <input type="text" formControlName="name" autocomplete="given-name" />
+      </label>
+
+      <label class="field">
+        <span>Last name</span>
+        <input type="text" formControlName="lastName" autocomplete="family-name" />
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" formControlName="password" autocomplete="new-password" />
+      </label>
+
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <af-button type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Creating account…' : 'Create account' }}
+      </af-button>
+    </form>
+
+    <p class="switch-link">Already have an account? <a routerLink="/login">Sign in</a></p>
+  </af-card>
+</div>

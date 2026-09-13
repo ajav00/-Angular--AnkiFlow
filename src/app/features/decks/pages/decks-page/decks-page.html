@@ -21,15 +21,15 @@
   <section class="summary" aria-label="Deck library summary">
     <div>
       <span>Total decks</span>
-      <strong>{{ library.summary.totalDecks }}</strong>
+      <strong>{{ library().summary.totalDecks }}</strong>
     </div>
     <div>
       <span>Total cards</span>
-      <strong>{{ library.summary.totalCards }}</strong>
+      <strong>{{ library().summary.totalCards }}</strong>
     </div>
     <div>
       <span>Due today</span>
-      <strong>{{ library.summary.dueToday }}</strong>
+      <strong>{{ library().summary.dueToday }}</strong>
     </div>
   </section>
 
@@ -41,9 +41,9 @@
         <span class="eyebrow">All decks</span>
         <h2 id="deck-grid-title">Ready when you are</h2>
       </div>
-      <span>{{ library.decks.length }} collections</span>
+      <span>{{ library().decks.length }} collections</span>
     </div>
 
-    <af-deck-library-grid [decks]="library.decks" />
+    <af-deck-library-grid [decks]="library().decks" />
   </section>
 </div>

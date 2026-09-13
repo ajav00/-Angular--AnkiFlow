@@ -16,11 +16,14 @@
       <af-icon name="bell" />
     </af-icon-button>
     <div class="profile">
-      <af-avatar name="Javier Vargas" [size]="42" />
+      <af-avatar [name]="displayName()" [size]="42" />
       <div class="profile__copy">
-        <strong>Javier</strong>
+        <strong>{{ displayName() }}</strong>
         <span>Focused learner</span>
       </div>
     </div>
+    <af-icon-button label="Sign out" (click)="logout()">
+      <af-icon name="arrow-right" />
+    </af-icon-button>
   </div>
 </header>

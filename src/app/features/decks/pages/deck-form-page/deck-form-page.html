@@ -18,16 +18,20 @@
 
     <div class="page-header__actions">
       <a routerLink="/decks" class="cancel-link">Cancel</a>
-      <af-button>
+      <af-button (click)="save()" [disabled]="saving()">
         <af-icon name="book" [size]="18" />
-        {{ isCreateMode ? 'Create deck' : 'Save changes' }}
+        {{ saving() ? 'Saving…' : isCreateMode ? 'Create deck' : 'Save changes' }}
       </af-button>
     </div>
   </header>
 
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
   <div class="form-layout">
     <div class="form-sections">
-      <af-deck-metadata-form [deck]="deck" />
+      <af-deck-metadata-form [deck]="deck" [form]="form" />
       <af-note-type-editor [deck]="deck" />
     </div>
 
@@ -36,6 +40,8 @@
 
   <footer class="mobile-actions">
     <a routerLink="/decks">Cancel</a>
-    <af-button>{{ isCreateMode ? 'Create deck' : 'Save changes' }}</af-button>
+    <af-button (click)="save()" [disabled]="saving()">
+      {{ saving() ? 'Saving…' : isCreateMode ? 'Create deck' : 'Save changes' }}
+    </af-button>
   </footer>
 </div>

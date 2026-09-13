@@ -10,6 +10,10 @@
   padding: clamp(1rem, 3vw, 2.5rem);
 }
 
+.error {
+  color: #d64545;
+}
+
 .page-header,
 .page-header__actions {
   display: flex;

@@ -1,4 +1,4 @@
-<section class="form-card" aria-labelledby="metadata-title">
+<section class="form-card" [formGroup]="form()" aria-labelledby="metadata-title">
   <div class="section-heading">
     <span class="step">1</span>
     <div>
@@ -11,13 +11,13 @@
   <div class="form-grid">
     <label class="field field--wide">
       <span>Deck name</span>
-      <input type="text" [value]="deck().title" placeholder="e.g. Everyday English" />
+      <input type="text" formControlName="title" placeholder="e.g. Everyday English" />
       <small>Use a short name that is easy to recognize.</small>
     </label>
 
     <label class="field field--wide">
       <span>Description</span>
-      <textarea rows="3" [value]="deck().description"></textarea>
+      <textarea rows="3" formControlName="description"></textarea>
       <small>Explain what learners will practice in this deck.</small>
     </label>
 
@@ -29,26 +29,17 @@
         <option>Professional</option>
         <option>Personal</option>
       </select>
+      <small>Not saved yet — categories aren't supported by the backend.</small>
     </label>
 
     <label class="field">
-      <span>Term language</span>
-      <select>
-        <option selected>{{ deck().termLanguage }}</option>
-        <option>Spanish</option>
-        <option>Japanese</option>
-        <option>Other</option>
-      </select>
+      <span>Term language code</span>
+      <input type="text" formControlName="termLanguageCode" placeholder="e.g. en" />
     </label>
 
     <label class="field">
-      <span>Definition language</span>
-      <select>
-        <option selected>{{ deck().definitionLanguage }}</option>
-        <option>English</option>
-        <option>Japanese</option>
-        <option>Other</option>
-      </select>
+      <span>Definition language code</span>
+      <input type="text" formControlName="definitionLanguageCode" placeholder="e.g. es" />
     </label>
 
     <div class="field field--wide">
