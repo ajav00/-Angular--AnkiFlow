@@ -62,7 +62,7 @@ h2 {
   box-shadow: none;
 }
 
-.rating--again {
+.rating--fail {
   background: var(--color-tertiary-container);
 }
 
@@ -70,12 +70,23 @@ h2 {
   background: #ffd9b8;
 }
 
-.rating--good {
+.rating--learnt {
   background: var(--color-primary-container);
 }
 
 .rating--easy {
   background: var(--color-secondary-container);
+}
+
+.rating:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.rating:disabled:hover,
+.rating:disabled:active {
+  transform: none;
+  box-shadow: var(--shadow-card);
 }
 
 kbd {

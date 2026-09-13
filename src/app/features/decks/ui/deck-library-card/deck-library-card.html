@@ -42,5 +42,10 @@
       </span>
       <span>{{ deck().lastStudiedLabel }}</span>
     </div>
+
+    <a class="deck-card__study" [routerLink]="['/study', deck().id]">
+      <af-icon name="study" [size]="16" />
+      Study now
+    </a>
   </div>
 </af-card>

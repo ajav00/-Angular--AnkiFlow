@@ -1,35 +1,32 @@
-<article class="flashcard" aria-label="Revealed flashcard">
+<article class="flashcard" aria-label="Flashcard">
   <section class="flashcard__face flashcard__face--front">
     <div class="face-label">
       <span>Front</span>
-      <span class="language">English</span>
     </div>
 
     <h1>{{ card().front }}</h1>
-
-    <div class="hint">
-      <af-icon name="sparkles" [size]="18" />
-      <span>{{ card().hint }}</span>
-    </div>
   </section>
 
-  <div class="reveal-divider">
-    <span>Answer revealed</span>
-  </div>
-
-  <section class="flashcard__face flashcard__face--back">
-    <div class="face-label">
-      <span>Back</span>
-      <span class="language">Spanish</span>
+  @if (!revealed()) {
+    <button type="button" class="reveal-button" (click)="reveal.emit()">
+      <af-icon name="sparkles" [size]="16" />
+      Show answer
+    </button>
+  } @else {
+    <div class="reveal-divider">
+      <span>Answer revealed</span>
     </div>
 
-    <h2>{{ card().back }}</h2>
-    <p>{{ card().example }}</p>
+    <section class="flashcard__face flashcard__face--back">
+      <div class="face-label">
+        <span>Back</span>
+      </div>
 
-    <div class="tags">
-      @for (tag of card().tags; track tag) {
-        <af-badge variant="neutral">#{{ tag }}</af-badge>
+      <h2>{{ card().back }}</h2>
+
+      @if (card().example) {
+        <p>{{ card().example }}</p>
       }
-    </div>
-  </section>
+    </section>
+  }
 </article>

@@ -9,7 +9,12 @@
 
   <div class="ratings">
     @for (rating of ratings(); track rating.label) {
-      <button [class]="'rating rating--' + rating.tone" type="button">
+      <button
+        [class]="'rating rating--' + rating.tone"
+        type="button"
+        [disabled]="disabled()"
+        (click)="rate.emit(rating)"
+      >
         <kbd>{{ rating.shortcut }}</kbd>
         <strong>{{ rating.label }}</strong>
         <span>{{ rating.intervalLabel }}</span>

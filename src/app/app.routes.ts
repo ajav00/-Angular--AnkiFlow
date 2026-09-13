@@ -8,6 +8,11 @@ export const routes: Routes = [
   },
   {
     path: 'study',
+    pathMatch: 'full',
+    redirectTo: '/decks',
+  },
+  {
+    path: 'study',
     canActivate: [authGuard],
     loadChildren: () =>
       import('./features/study/study.routes').then((module) => module.STUDY_ROUTES),

@@ -1,12 +1,53 @@
 <main class="study-page">
-  <af-study-session-header [session]="session" />
+  @switch (status()) {
+    @case ('loading') {
+      <div class="state-panel">
+        <p>Loading due cards…</p>
+      </div>
+    }
+    @case ('empty') {
+      <div class="state-panel">
+        <h1>All caught up!</h1>
+        <p>There are no cards due for "{{ deckTitle() }}" right now.</p>
+        <a class="primary-link" [routerLink]="['/decks', deckId]">Back to deck</a>
+      </div>
+    }
+    @case ('error') {
+      <div class="state-panel">
+        <h1>Something went wrong</h1>
+        <p>Could not load or save this study session. Please try again.</p>
+        <a class="primary-link" [routerLink]="['/decks', deckId]">Back to deck</a>
+      </div>
+    }
+    @case ('saving') {
+      <div class="state-panel">
+        <p>Saving your progress…</p>
+      </div>
+    }
+    @case ('finished') {
+      <div class="state-panel">
+        <h1>Session complete!</h1>
+        <p>You reviewed {{ totalCards() }} card(s) from "{{ deckTitle() }}".</p>
+        <a class="primary-link" [routerLink]="['/decks', deckId]">Back to deck</a>
+      </div>
+    }
+    @case ('studying') {
+      @if (session(); as vm) {
+        <af-study-session-header [session]="vm" />
 
-  <div class="study-layout">
-    <div>
-      <af-study-flashcard [card]="session.card" />
-      <af-answer-rating-controls [ratings]="session.ratings" />
-    </div>
+        <div class="study-layout">
+          <div>
+            <af-study-flashcard [card]="vm.card" [revealed]="revealed()" (reveal)="revealAnswer()" />
+            <af-answer-rating-controls
+              [ratings]="vm.ratings"
+              [disabled]="!revealed()"
+              (rate)="rate($event)"
+            />
+          </div>
 
-    <af-study-session-summary [session]="session" />
-  </div>
+          <af-study-session-summary [session]="vm" />
+        </div>
+      }
+    }
+  }
 </main>

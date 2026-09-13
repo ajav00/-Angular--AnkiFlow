@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { StudyRating } from '../../study.models';
 
 @Component({
@@ -8,4 +8,6 @@ import { StudyRating } from '../../study.models';
 })
 export class AnswerRatingControls {
   readonly ratings = input.required<readonly StudyRating[]>();
+  readonly disabled = input(false);
+  readonly rate = output<StudyRating>();
 }
