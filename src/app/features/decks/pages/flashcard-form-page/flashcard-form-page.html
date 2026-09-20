@@ -1,9 +1,9 @@
 <div class="flashcard-form-page">
   <header class="page-header">
     <div>
-      <a [routerLink]="['/decks', card.deckId]" class="back-link">
+      <a [routerLink]="['/decks', deckId]" class="back-link">
         <span aria-hidden="true">←</span>
-        Back to {{ card.deckTitle }}
+        Back to {{ card().deckTitle }}
       </a>
       <span class="eyebrow">{{ isCreateMode ? 'New flashcard' : 'Card editor' }}</span>
       <h1>{{ isCreateMode ? 'Add a flashcard' : 'Edit flashcard' }}</h1>
@@ -17,28 +17,36 @@
     </div>
 
     <div class="page-header__actions">
-      <a [routerLink]="['/decks', card.deckId]" class="cancel-link">Cancel</a>
+      <a [routerLink]="['/decks', deckId]" class="cancel-link">Cancel</a>
       @if (isCreateMode) {
-        <af-button variant="secondary">Save and add another</af-button>
+        <af-button variant="secondary" (click)="save(true)" [disabled]="saving()">
+          Save and add another
+        </af-button>
       }
-      <af-button>
+      <af-button (click)="save()" [disabled]="saving()">
         <af-icon name="plus" [size]="18" />
-        {{ isCreateMode ? 'Add card' : 'Save changes' }}
+        {{ saving() ? 'Saving…' : isCreateMode ? 'Add card' : 'Save changes' }}
       </af-button>
     </div>
   </header>
 
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
   <div class="form-layout">
     <div class="form-sections">
-      <af-flashcard-content-form [card]="card" />
-      <af-flashcard-metadata-form [card]="card" />
+      <af-flashcard-content-form [form]="form" />
+      <af-flashcard-metadata-form [card]="card()" />
     </div>
 
-    <af-flashcard-form-preview [card]="card" />
+    <af-flashcard-form-preview [card]="card()" />
   </div>
 
   <footer class="mobile-actions">
-    <a [routerLink]="['/decks', card.deckId]">Cancel</a>
-    <af-button>{{ isCreateMode ? 'Add card' : 'Save changes' }}</af-button>
+    <a [routerLink]="['/decks', deckId]">Cancel</a>
+    <af-button (click)="save()" [disabled]="saving()">
+      {{ saving() ? 'Saving…' : isCreateMode ? 'Add card' : 'Save changes' }}
+    </af-button>
   </footer>
 </div>

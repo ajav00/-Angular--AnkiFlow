@@ -27,6 +27,7 @@ export class DeckFormPage {
   protected readonly deck = DECK_FORM_FIXTURE;
   protected readonly isCreateMode = this.route.snapshot.routeConfig?.path === 'new';
   protected readonly saving = signal(false);
+  protected readonly deleting = signal(false);
   protected readonly errorMessage = signal<string | null>(null);
 
   private readonly deckId = Number(this.route.snapshot.paramMap.get('deckId'));
@@ -70,6 +71,26 @@ export class DeckFormPage {
       error: () => {
         this.saving.set(false);
         this.errorMessage.set('Could not save the deck. Please try again.');
+      },
+    });
+  }
+
+  protected deleteDeck(): void {
+    if (this.isCreateMode) return;
+
+    const title = this.form.getRawValue().title || 'this deck';
+    if (!window.confirm(`Delete "${title}"? This also removes its cards and cannot be undone.`)) {
+      return;
+    }
+
+    this.deleting.set(true);
+    this.errorMessage.set(null);
+
+    this.decksService.delete(this.deckId).subscribe({
+      next: () => this.router.navigateByUrl('/decks'),
+      error: () => {
+        this.deleting.set(false);
+        this.errorMessage.set('Could not delete the deck. Please try again.');
       },
     });
   }

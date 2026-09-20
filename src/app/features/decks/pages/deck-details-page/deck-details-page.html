@@ -1,6 +1,6 @@
 <div class="deck-details">
-  <af-deck-details-header [deck]="deck" />
-  <af-deck-detail-statistics [statistics]="deck.statistics" />
+  <af-deck-details-header [deck]="deck()" />
+  <af-deck-detail-statistics [statistics]="deck().statistics" />
 
   <section class="cards-section" aria-labelledby="cards-title">
     <div class="section-heading">
@@ -8,10 +8,10 @@
         <span class="eyebrow">Card browser</span>
         <h2 id="cards-title">Flashcards</h2>
       </div>
-      <span>Showing {{ deck.cards.length }} of 240 cards</span>
+      <span>Showing {{ deck().cards.length }} cards</span>
     </div>
 
-    <af-flashcard-toolbar [deckId]="deck.id" />
-    <af-flashcard-list [cards]="deck.cards" [deckId]="deck.id" />
+    <af-flashcard-toolbar [deckId]="deck().id" />
+    <af-flashcard-list [cards]="deck().cards" [deckId]="deck().id" />
   </section>
 </div>

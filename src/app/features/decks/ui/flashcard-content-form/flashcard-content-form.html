@@ -1,4 +1,4 @@
-<section class="content-form" aria-labelledby="content-title">
+<section class="content-form" [formGroup]="form()" aria-labelledby="content-title">
   <div class="section-heading">
     <span class="step">1</span>
     <div>
@@ -9,21 +9,40 @@
   </div>
 
   <div class="field-list">
-    @for (field of card().fields; track field.id) {
-      <label class="field">
-        <span class="field__label">
-          <strong>{{ field.label }}</strong>
-          <span>{{ field.required ? 'Required' : 'Optional' }}</span>
-        </span>
+    <label class="field">
+      <span class="field__label">
+        <strong>Front</strong>
+        <span>Required</span>
+      </span>
+      <textarea rows="4" formControlName="front"></textarea>
+      <small>Question, word, or phrase shown first.</small>
+    </label>
 
-        @if (field.multiline) {
-          <textarea [rows]="field.id === 'example' ? 3 : 4" [value]="field.value"></textarea>
-        } @else {
-          <input type="text" [value]="field.value" />
-        }
+    <label class="field">
+      <span class="field__label">
+        <strong>Back</strong>
+        <span>Required</span>
+      </span>
+      <textarea rows="4" formControlName="back"></textarea>
+      <small>Answer or translation revealed during study.</small>
+    </label>
 
-        <small>{{ field.description }}</small>
-      </label>
-    }
+    <label class="field">
+      <span class="field__label">
+        <strong>Example</strong>
+        <span>Optional</span>
+      </span>
+      <textarea rows="3" formControlName="example"></textarea>
+      <small>Optional sentence that provides context.</small>
+    </label>
+
+    <label class="field">
+      <span class="field__label">
+        <strong>Hint</strong>
+        <span>Optional</span>
+      </span>
+      <input type="text" disabled placeholder="Not saved yet" />
+      <small>Not saved yet — hints aren't supported by the backend.</small>
+    </label>
   </div>
 </section>

@@ -36,6 +36,6 @@
 
   <section class="insights" aria-label="Study insights and quick actions">
     <af-activity-heatmap [activity]="dashboard.activity" />
-    <af-quick-actions />
+    <af-quick-actions (actionSelected)="onQuickAction($event)" />
   </section>
 </div>

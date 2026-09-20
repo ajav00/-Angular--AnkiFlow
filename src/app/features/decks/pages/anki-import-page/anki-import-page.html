@@ -1,0 +1,129 @@
+<div class="anki-import-page">
+  <header class="page-header">
+    <div>
+      <a routerLink="/decks" class="back-link">
+        <span aria-hidden="true">←</span>
+        Back to decks
+      </a>
+      <span class="eyebrow">Bring your collection over</span>
+      <h1>Import from Anki</h1>
+      <p>Upload a .apkg file exported from Anki to create new decks and cards from it.</p>
+    </div>
+  </header>
+
+  @if (errorMessage() && step() !== 'error') {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  <af-card class="wizard">
+    @switch (step()) {
+      @case ('select') {
+        <div class="step">
+          <span class="step-badge">1</span>
+          <div class="step-body">
+            <h2>Choose a file and target languages</h2>
+
+            <label class="file-drop" for="apkg-input">
+              <af-icon name="upload" [size]="28" />
+              @if (selectedFile()) {
+                <strong>{{ selectedFile()!.name }}</strong>
+              } @else {
+                <strong>Click to choose a .apkg file</strong>
+              }
+              <small>Exported from Anki via File → Export</small>
+            </label>
+            <input
+              id="apkg-input"
+              type="file"
+              accept=".apkg"
+              (change)="onFileSelected($event)"
+            />
+
+            <form class="form-grid" [formGroup]="form">
+              <label class="field">
+                <span>Term language code</span>
+                <input type="text" formControlName="termLanguageCode" placeholder="e.g. en" />
+              </label>
+              <label class="field">
+                <span>Definition language code</span>
+                <input
+                  type="text"
+                  formControlName="definitionLanguageCode"
+                  placeholder="e.g. es"
+                />
+              </label>
+            </form>
+            <small class="hint">
+              Anki decks don't carry language metadata, so every deck created from this file will
+              use these two language codes.
+            </small>
+
+            <af-button (click)="import()" [disabled]="!selectedFile()">
+              <af-icon name="upload" [size]="18" />
+              Import
+            </af-button>
+          </div>
+        </div>
+      }
+      @case ('uploading') {
+        <div class="step">
+          <span class="step-badge">2</span>
+          <div class="step-body">
+            <h2>Uploading and importing…</h2>
+            <af-progress-bar [value]="uploadProgress()" label="Uploading .apkg" />
+            <small>{{ uploadProgress() }}%</small>
+          </div>
+        </div>
+      }
+      @case ('done') {
+        <div class="step">
+          <span class="step-badge step-badge--success">
+            <af-icon name="check" [size]="18" />
+          </span>
+          <div class="step-body">
+            <h2>Import complete</h2>
+
+            @if (result(); as importResult) {
+              <ul class="summary-list">
+                @for (deck of importResult.decks; track deck.deckId) {
+                  <li>
+                    <a [routerLink]="['/decks', deck.deckId]">{{ deck.title }}</a>
+                    <span>{{ deck.cardCount }} cards</span>
+                  </li>
+                }
+              </ul>
+
+              <p class="summary-totals">
+                {{ importResult.totalCardsImported }} cards imported
+                @if (importResult.totalCardsSkipped > 0) {
+                  · {{ importResult.totalCardsSkipped }} already imported before
+                }
+                @if (importResult.skippedAttachments > 0) {
+                  · {{ importResult.skippedAttachments }} media attachments were skipped (images
+                  and audio aren't imported yet)
+                }
+              </p>
+            }
+
+            <div class="actions">
+              <af-button variant="secondary" (click)="reset()">Import another file</af-button>
+              <a routerLink="/decks" class="primary-link">Go to my decks</a>
+            </div>
+          </div>
+        </div>
+      }
+      @case ('error') {
+        <div class="step">
+          <span class="step-badge step-badge--error">
+            <af-icon name="x" [size]="18" />
+          </span>
+          <div class="step-body">
+            <h2>Something went wrong</h2>
+            <p class="error">{{ errorMessage() }}</p>
+            <af-button (click)="reset()">Try again</af-button>
+          </div>
+        </div>
+      }
+    }
+  </af-card>
+</div>

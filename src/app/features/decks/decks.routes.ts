@@ -21,6 +21,13 @@ export const DECKS_ROUTES: Routes = [
       import('./pages/deck-form-page/deck-form-page').then((module) => module.DeckFormPage),
   },
   {
+    path: 'import',
+    loadComponent: () =>
+      import('./pages/anki-import-page/anki-import-page').then(
+        (module) => module.AnkiImportPage,
+      ),
+  },
+  {
     path: ':deckId/edit',
     loadComponent: () =>
       import('./pages/deck-form-page/deck-form-page').then((module) => module.DeckFormPage),

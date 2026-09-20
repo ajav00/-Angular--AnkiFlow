@@ -18,7 +18,12 @@
 
     <div class="page-header__actions">
       <a routerLink="/decks" class="cancel-link">Cancel</a>
-      <af-button (click)="save()" [disabled]="saving()">
+      @if (!isCreateMode) {
+        <af-button variant="danger" (click)="deleteDeck()" [disabled]="saving() || deleting()">
+          {{ deleting() ? 'Deleting…' : 'Delete deck' }}
+        </af-button>
+      }
+      <af-button (click)="save()" [disabled]="saving() || deleting()">
         <af-icon name="book" [size]="18" />
         {{ saving() ? 'Saving…' : isCreateMode ? 'Create deck' : 'Save changes' }}
       </af-button>
@@ -40,7 +45,7 @@
 
   <footer class="mobile-actions">
     <a routerLink="/decks">Cancel</a>
-    <af-button (click)="save()" [disabled]="saving()">
+    <af-button (click)="save()" [disabled]="saving() || deleting()">
       {{ saving() ? 'Saving…' : isCreateMode ? 'Create deck' : 'Save changes' }}
     </af-button>
   </footer>

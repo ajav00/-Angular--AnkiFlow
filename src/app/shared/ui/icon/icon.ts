@@ -14,7 +14,9 @@ export type IconName =
   | 'flame'
   | 'clock'
   | 'book'
-  | 'arrow-right';
+  | 'arrow-right'
+  | 'check'
+  | 'x';
 
 @Component({
   selector: 'af-icon',

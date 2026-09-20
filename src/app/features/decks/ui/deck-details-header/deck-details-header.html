@@ -25,7 +25,7 @@
         <af-icon name="settings" [size]="18" />
         Edit deck
       </a>
-      <a class="study-link" routerLink="/study">
+      <a class="study-link" [routerLink]="['/study', deck().id]">
         <af-icon name="study" [size]="18" />
         Study now
       </a>

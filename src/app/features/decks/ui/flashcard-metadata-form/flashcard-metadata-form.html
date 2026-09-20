@@ -37,14 +37,16 @@
     <input type="checkbox" />
   </label>
 
-  <aside class="duplicate-notice">
-    <span class="duplicate-notice__icon">
-      <af-icon name="search" [size]="19" />
-    </span>
-    <div>
-      <strong>{{ card().duplicateMatchCount }} possible duplicate found</strong>
-      <p>A note with a similar front already exists in this deck.</p>
-      <button type="button">Review match</button>
-    </div>
-  </aside>
+  @if (card().duplicateMatchCount > 0) {
+    <aside class="duplicate-notice">
+      <span class="duplicate-notice__icon">
+        <af-icon name="search" [size]="19" />
+      </span>
+      <div>
+        <strong>{{ card().duplicateMatchCount }} possible duplicate found</strong>
+        <p>A note with a similar front already exists in this deck.</p>
+        <button type="button">Review match</button>
+      </div>
+    </aside>
+  }
 </section>
