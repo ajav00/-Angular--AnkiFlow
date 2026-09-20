@@ -40,5 +40,4 @@ export interface DashboardViewModel {
   readonly reviewSummary: ReviewSummary;
   readonly statistics: readonly StudyStatistic[];
   readonly recentDecks: readonly DeckProgress[];
-  readonly activity: readonly StudyActivity[];
 }

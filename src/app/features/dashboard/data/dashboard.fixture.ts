@@ -1,19 +1,4 @@
-import { DashboardViewModel, StudyActivity } from '../dashboard.models';
-
-const activityLevels: ReadonlyArray<StudyActivity['intensity']> = [
-  0, 1, 0, 2, 3, 2, 0, 1, 2, 4, 3, 1, 0, 0, 2, 3, 4, 2, 1, 0, 1, 3, 2, 4, 3, 2, 1, 0, 2, 3, 4, 4, 2,
-  1, 0, 2, 3, 1, 4, 3, 2, 0, 1, 2, 3, 4, 2, 1, 0,
-];
-
-const activity: readonly StudyActivity[] = activityLevels.map((intensity, index) => {
-  const date = new Date(2026, 6, index + 1);
-
-  return {
-    date: date.toISOString().slice(0, 10),
-    reviewCount: intensity * 8 + (index % 5),
-    intensity,
-  };
-});
+import { DashboardViewModel } from '../dashboard.models';
 
 export const DASHBOARD_FIXTURE: DashboardViewModel = {
   user: {
@@ -81,5 +66,4 @@ export const DASHBOARD_FIXTURE: DashboardViewModel = {
       color: '#50c878',
     },
   ],
-  activity,
 };

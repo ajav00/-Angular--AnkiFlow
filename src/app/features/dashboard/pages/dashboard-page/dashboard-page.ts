@@ -1,8 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Button } from '../../../../shared/ui/button/button';
 import { Icon } from '../../../../shared/ui/icon/icon';
+import { ACTIVITY_WINDOW_DAYS, buildActivityCalendar, buildActivityWindow } from '../../activity-calendar';
 import { DASHBOARD_FIXTURE } from '../../data/dashboard.fixture';
+import { DashboardService } from '../../dashboard.service';
 import { ActivityHeatmap } from '../../ui/activity-heatmap/activity-heatmap';
 import { DeckProgressGrid } from '../../ui/deck-progress-grid/deck-progress-grid';
 import { QuickActionId, QuickActions } from '../../ui/quick-actions/quick-actions';
@@ -27,8 +30,18 @@ import { WelcomeBanner } from '../../ui/welcome-banner/welcome-banner';
 })
 export class DashboardPage {
   private readonly router = inject(Router);
+  private readonly dashboardService = inject(DashboardService);
 
   protected readonly dashboard = DASHBOARD_FIXTURE;
+
+  private readonly activityWindow = buildActivityWindow(ACTIVITY_WINDOW_DAYS);
+  private readonly sessionHistory = toSignal(
+    this.dashboardService.getSessionHistory(this.activityWindow.startDate, this.activityWindow.endDate),
+    { initialValue: [] },
+  );
+  protected readonly activity = computed(() =>
+    buildActivityCalendar(this.sessionHistory(), this.activityWindow),
+  );
 
   protected onQuickAction(action: QuickActionId): void {
     switch (action) {

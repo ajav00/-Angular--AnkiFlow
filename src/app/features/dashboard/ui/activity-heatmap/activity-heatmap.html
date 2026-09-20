@@ -13,14 +13,16 @@
     </div>
   </div>
 
-  <div class="heatmap" aria-label="Study activity for July 2026">
+  <div class="heatmap" [attr.aria-label]="'Study activity from ' + rangeLabel()">
     @for (day of activity(); track day.date) {
       <span
         [class]="'cell cell--' + day.intensity"
-        [title]="day.date + ': ' + day.reviewCount + ' reviews'"
+        [title]="day.date + ': ' + day.reviewCount + ' sessions'"
       ></span>
     }
   </div>
 
-  <p>You studied on <strong>21 days</strong> this month. Four more days than June.</p>
+  <p>
+    You studied on <strong>{{ daysStudied() }} days</strong> between {{ rangeLabel() }}.
+  </p>
 </af-card>
