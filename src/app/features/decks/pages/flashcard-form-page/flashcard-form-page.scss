@@ -124,7 +124,8 @@ h1 {
     bottom: 5.1rem;
     left: 0.75rem;
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
     gap: 0.7rem;
     border: var(--border-strong);
     border-radius: var(--radius-lg);

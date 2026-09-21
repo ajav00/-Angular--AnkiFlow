@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Button } from '../../../../shared/ui/button/button';
-import { Icon } from '../../../../shared/ui/icon/icon';
 import { CardsService } from '../../cards.service';
 import { FLASHCARD_FORM_FIXTURE } from '../../data/flashcard-form.fixture';
 import { DecksService } from '../../decks.service';
@@ -17,7 +16,6 @@ import { FlashcardMetadataForm } from '../../ui/flashcard-metadata-form/flashcar
   imports: [
     RouterLink,
     Button,
-    Icon,
     FlashcardContentForm,
     FlashcardMetadataForm,
     FlashcardFormPreview,

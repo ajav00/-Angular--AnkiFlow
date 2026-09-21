@@ -20,12 +20,11 @@
       <a [routerLink]="['/decks', deckId]" class="cancel-link">Cancel</a>
       @if (isCreateMode) {
         <af-button variant="secondary" (click)="save(true)" [disabled]="saving()">
-          Save and add another
+          Next
         </af-button>
       }
       <af-button (click)="save()" [disabled]="saving()">
-        <af-icon name="plus" [size]="18" />
-        {{ saving() ? 'Saving…' : isCreateMode ? 'Add card' : 'Save changes' }}
+        {{ saving() ? 'Saving…' : isCreateMode ? 'Save' : 'Save changes' }}
       </af-button>
     </div>
   </header>
@@ -45,8 +44,13 @@
 
   <footer class="mobile-actions">
     <a [routerLink]="['/decks', deckId]">Cancel</a>
+    @if (isCreateMode) {
+      <af-button variant="secondary" (click)="save(true)" [disabled]="saving()">
+        Next
+      </af-button>
+    }
     <af-button (click)="save()" [disabled]="saving()">
-      {{ saving() ? 'Saving…' : isCreateMode ? 'Add card' : 'Save changes' }}
+      {{ saving() ? 'Saving…' : isCreateMode ? 'Save' : 'Save changes' }}
     </af-button>
   </footer>
 </div>
