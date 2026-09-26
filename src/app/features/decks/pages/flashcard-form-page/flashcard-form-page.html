@@ -35,7 +35,11 @@
 
   <div class="form-layout">
     <div class="form-sections">
-      <af-flashcard-content-form [form]="form" />
+      <af-flashcard-content-form
+        [form]="form"
+        [termLanguageCode]="termLanguageCode()"
+        [definitionLanguageCode]="definitionLanguageCode()"
+      />
       <af-flashcard-metadata-form [card]="card()" />
     </div>
 

@@ -1,0 +1,248 @@
+<div class="settings-page">
+  <header class="page-header">
+    <div>
+      <span class="eyebrow">Account</span>
+      <h1>Settings</h1>
+      <p>
+        Set up the translation service for your cards. A custom API lets you shape the request
+        headers, body, and the path to the translated text. LibreTranslate only needs its server
+        URL.
+      </p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <p class="status">Loading translation profiles…</p>
+  } @else if (loadError()) {
+    <section class="panel">
+      <p class="error">{{ loadError() }}</p>
+      <af-button variant="secondary" (click)="reload()">Try again</af-button>
+    </section>
+  } @else {
+    <div class="workspace">
+      <section class="panel" aria-labelledby="profiles-title">
+        <div class="panel__heading">
+          <div>
+            <span class="eyebrow">Saved services</span>
+            <h2 id="profiles-title">Translation profiles</h2>
+          </div>
+          <span class="count">{{ profiles().length }}</span>
+        </div>
+
+        @if (profiles().length === 0) {
+          <p class="empty-copy">Nothing saved yet. Add a custom API or a LibreTranslate server.</p>
+        } @else {
+          <ul class="profile-list">
+            @for (profile of profiles(); track profile.id) {
+              <li>
+                <button
+                  type="button"
+                  class="profile-item"
+                  [class.profile-item--selected]="isSelected(profile)"
+                  (click)="beginEdit(profile)"
+                >
+                  <span class="profile-item__name">{{ profile.name }}</span>
+                  <span class="profile-item__meta">
+                    <af-badge [variant]="profile.kind === 'LibreTranslate' ? 'info' : 'neutral'">
+                      {{ kindLabel(profile.kind) }}
+                    </af-badge>
+                    @if (profile.isDefault) {
+                      <af-badge variant="success">Active</af-badge>
+                    }
+                  </span>
+                </button>
+              </li>
+            }
+          </ul>
+        }
+
+        <div class="list-actions">
+          <af-button size="sm" (click)="beginCreate('Custom')">
+            <af-icon name="plus" [size]="16" />
+            New API
+          </af-button>
+          <af-button
+            variant="secondary"
+            size="sm"
+            (click)="beginCreate('LibreTranslate')"
+            [disabled]="libreTranslateExists()"
+          >
+            Add LibreTranslate
+          </af-button>
+        </div>
+        @if (libreTranslateExists()) {
+          <p class="hint">LibreTranslate is already configured. Edit it from the list.</p>
+        }
+      </section>
+
+      <section class="panel" aria-labelledby="editor-title">
+        @if (!editor()) {
+          <div class="empty-editor">
+            <span class="eyebrow">Translation</span>
+            <h2 id="editor-title">Choose a service</h2>
+            <p>Open a saved profile, or add the service you want to use for translations.</p>
+            @if (profiles().length === 0) {
+              <div class="list-actions">
+                <af-button (click)="beginCreate('Custom')">
+                  <af-icon name="plus" [size]="18" />
+                  New API
+                </af-button>
+                <af-button variant="secondary" (click)="beginCreate('LibreTranslate')">
+                  Add LibreTranslate
+                </af-button>
+              </div>
+            }
+          </div>
+        } @else {
+          <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="panel__heading">
+              <div>
+                <span class="eyebrow">{{ kindLabel(kind()) }}</span>
+                <h2 id="editor-title">{{ editorTitle() }}</h2>
+              </div>
+            </div>
+
+            @if (kind() === 'LibreTranslate') {
+              <p class="hint">
+                LibreTranslate keeps its own request format. This page only stores the server URL
+                and whether it is the active translator.
+              </p>
+            }
+
+            @if (libreCreateBlocked()) {
+              <p class="error">
+                A LibreTranslate profile already exists. Edit the saved one instead.
+              </p>
+            }
+
+            @if (errorMessage()) {
+              <p class="error">{{ errorMessage() }}</p>
+            }
+
+            <div class="form-grid">
+              @if (editor()?.mode === 'create') {
+                <label class="field">
+                  <span>Service</span>
+                  <select formControlName="kind">
+                    <option value="Custom">Custom API</option>
+                    <option value="LibreTranslate" [disabled]="libreTranslateExists()">
+                      LibreTranslate
+                    </option>
+                  </select>
+                </label>
+              }
+
+              @if (kind() === 'Custom') {
+                <label class="field" [class.field--wide]="editor()?.mode === 'edit'">
+                  <span>Name</span>
+                  <input type="text" formControlName="name" placeholder="e.g. My translation API" />
+                  @if (form.controls.name.touched && form.controls.name.invalid) {
+                    <small class="field-error"
+                      >Name is required and must be at most 120 characters.</small
+                    >
+                  }
+                </label>
+              }
+
+              <label class="field field--wide">
+                <span>URL</span>
+                <input
+                  type="url"
+                  formControlName="url"
+                  [placeholder]="
+                    kind() === 'LibreTranslate'
+                      ? 'http://localhost:5000'
+                      : 'https://api.example.com/translate'
+                  "
+                />
+                <small>{{ kind() === 'LibreTranslate' ? libreUrlHint : customUrlHint }}</small>
+                @if (form.controls.url.touched && form.controls.url.hasError('required')) {
+                  <small class="field-error">URL is required.</small>
+                }
+                @if (
+                  form.controls.url.touched &&
+                  (form.controls.url.hasError('httpUrl') || form.controls.url.hasError('maxlength'))
+                ) {
+                  <small class="field-error"
+                    >Enter an absolute http or https URL of at most 2000 characters.</small
+                  >
+                }
+              </label>
+
+              @if (kind() === 'Custom') {
+                <label class="field">
+                  <span>Method</span>
+                  <select formControlName="httpMethod">
+                    @for (method of httpMethods; track method) {
+                      <option [value]="method">{{ method }}</option>
+                    }
+                  </select>
+                </label>
+
+                <label class="field">
+                  <span>Response path</span>
+                  <input type="text" formControlName="responsePath" placeholder="translatedText" />
+                  <small
+                    >Dot path to the translated string, such as translatedText or
+                    data.0.text.</small
+                  >
+                  @if (form.controls.responsePath.touched && form.controls.responsePath.invalid) {
+                    <small class="field-error">
+                      Response path is required and must be at most 300 characters.
+                    </small>
+                  }
+                </label>
+
+                <div class="field field--wide">
+                  <af-request-entries-editor
+                    arrayName="headers"
+                    label="Headers"
+                    [hint]="headerHint"
+                    duplicateMessage="Header keys must be unique."
+                  />
+                </div>
+
+                <div class="field field--wide">
+                  <af-request-entries-editor
+                    arrayName="body"
+                    label="Body"
+                    [hint]="bodyHint"
+                    duplicateMessage="Body keys must be unique."
+                  />
+                </div>
+              }
+            </div>
+
+            <label class="check">
+              <input type="checkbox" formControlName="isDefault" />
+              <span>
+                <strong>Use as active translator</strong>
+                <small
+                  >Study uses this profile when translating. Only one profile stays active.</small
+                >
+              </span>
+            </label>
+
+            <div class="editor-actions">
+              <af-button variant="ghost" (click)="cancel()">Cancel</af-button>
+              @if (editor()?.mode === 'edit') {
+                <af-button
+                  variant="danger"
+                  (click)="deleteProfile()"
+                  [disabled]="saving() || deleting()"
+                >
+                  {{ deleting() ? 'Deleting…' : 'Delete' }}
+                </af-button>
+              }
+              <af-button type="submit" [disabled]="saving() || deleting() || libreCreateBlocked()">
+                {{
+                  saving() ? 'Saving…' : editor()?.mode === 'edit' ? 'Save changes' : 'Save profile'
+                }}
+              </af-button>
+            </div>
+          </form>
+        }
+      </section>
+    </div>
+  }
+</div>

@@ -33,6 +33,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/decks/decks.routes').then((module) => module.DECKS_ROUTES),
       },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./features/settings/settings.routes').then((module) => module.SETTINGS_ROUTES),
+      },
     ],
   },
   {

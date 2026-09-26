@@ -1,0 +1,14 @@
+{
+  "/api": {
+    "target": "http://host.docker.internal:5288",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/openapi": {
+    "target": "http://host.docker.internal:5288",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

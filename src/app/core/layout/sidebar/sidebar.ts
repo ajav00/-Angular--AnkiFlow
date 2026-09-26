@@ -25,6 +25,6 @@ export class Sidebar {
   ];
 
   protected readonly secondaryNavigation: readonly NavigationItem[] = [
-    { label: 'Settings', icon: 'settings', route: '/settings', disabled: true },
+    { label: 'Settings', icon: 'settings', route: '/settings' },
   ];
 }

@@ -33,6 +33,8 @@
         class="navigation__item"
         [class.navigation__item--disabled]="item.disabled"
         [routerLink]="item.disabled ? null : item.route"
+        routerLinkActive="navigation__item--active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/' }"
         [attr.aria-disabled]="item.disabled || null"
       >
         <af-icon [name]="item.icon" />

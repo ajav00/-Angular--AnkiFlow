@@ -1,0 +1,59 @@
+<section class="entries" [formArrayName]="arrayName()">
+  <div class="entries__heading">
+    <div>
+      <h3>{{ label() }}</h3>
+      @if (hint()) {
+        <p>{{ hint() }}</p>
+      }
+    </div>
+    <af-button variant="secondary" size="sm" (click)="add()">
+      <af-icon name="plus" [size]="16" />
+      Add
+    </af-button>
+  </div>
+
+  @if (entries().hasError('duplicateKey') && entries().touched) {
+    <p class="field-error">{{ duplicateMessage() }}</p>
+  }
+
+  @if (entries().length === 0) {
+    <p class="entries__empty">No {{ label().toLowerCase() }} yet.</p>
+  } @else {
+    <div class="entry entry--head" aria-hidden="true">
+      <span>Key</span>
+      <span>Value</span>
+    </div>
+    @for (entry of entries().controls; track entry; let index = $index) {
+      <div class="entry" [formGroupName]="index">
+        <input
+          type="text"
+          formControlName="key"
+          placeholder="Key"
+          autocomplete="off"
+          [attr.aria-label]="label() + ' key'"
+        />
+        <input
+          type="text"
+          formControlName="value"
+          placeholder="Value"
+          autocomplete="off"
+          [attr.aria-label]="label() + ' value'"
+        />
+        <af-button
+          variant="ghost"
+          size="sm"
+          (click)="remove(index)"
+          [attr.aria-label]="'Remove ' + label() + ' row ' + (index + 1)"
+        >
+          <af-icon name="x" [size]="16" />
+        </af-button>
+      </div>
+      @if (entry.controls.key.touched && entry.controls.key.invalid) {
+        <p class="field-error">Key is required and must be at most 256 characters.</p>
+      }
+      @if (entry.controls.value.touched && entry.controls.value.hasError('maxlength')) {
+        <p class="field-error">Values must be at most 8000 characters.</p>
+      }
+    }
+  }
+</section>

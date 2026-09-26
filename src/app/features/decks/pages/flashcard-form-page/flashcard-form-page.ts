@@ -39,6 +39,8 @@ export class FlashcardFormPage {
 
   protected readonly saving = signal(false);
   protected readonly errorMessage = signal<string | null>(null);
+  protected readonly termLanguageCode = signal('');
+  protected readonly definitionLanguageCode = signal('');
   private readonly deckTitle = signal('Deck');
   private readonly previewSeed = signal<{ front: string; back: string } | null>(null);
 
@@ -63,7 +65,11 @@ export class FlashcardFormPage {
 
   constructor() {
     this.decksService.get(this.deckId).subscribe({
-      next: (deck) => this.deckTitle.set(deck.title),
+      next: (deck) => {
+        this.deckTitle.set(deck.title);
+        this.termLanguageCode.set(deck.termLanguageCode);
+        this.definitionLanguageCode.set(deck.definitionLanguageCode);
+      },
       error: () => {},
     });
 
