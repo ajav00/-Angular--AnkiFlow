@@ -8,10 +8,10 @@
 
   <div class="deck-card__body">
     <div class="deck-card__title">
-      <div>
+      <a class="deck-card__title-link" [routerLink]="['/decks', deck().id]">
         <span class="deck-card__category">{{ deck().category }}</span>
         <h2>{{ deck().title }}</h2>
-      </div>
+      </a>
       <button
         type="button"
         [routerLink]="['/decks', deck().id]"

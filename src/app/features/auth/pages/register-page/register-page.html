@@ -1,5 +1,14 @@
 <div class="login-page">
   <af-card class="login-card">
+    <a class="brand" routerLink="/">
+      <span class="brand__mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span class="brand__name">AnkiFlow</span>
+    </a>
+
     <span class="eyebrow">Get started</span>
     <h1>Create your account</h1>
     <p>Start building decks and studying with spaced repetition.</p>
@@ -11,13 +20,8 @@
       </label>
 
       <label class="field">
-        <span>First name</span>
+        <span>Name</span>
         <input type="text" formControlName="name" autocomplete="given-name" />
-      </label>
-
-      <label class="field">
-        <span>Last name</span>
-        <input type="text" formControlName="lastName" autocomplete="family-name" />
       </label>
 
       <label class="field">
@@ -31,6 +35,7 @@
 
       <af-button type="submit" [disabled]="submitting()">
         {{ submitting() ? 'Creating account…' : 'Create account' }}
+        <af-icon name="arrow-right" [size]="18" />
       </af-button>
     </form>
 

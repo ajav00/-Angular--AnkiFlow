@@ -4,10 +4,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { Button } from '../../../../shared/ui/button/button';
 import { Card } from '../../../../shared/ui/card/card';
+import { Icon } from '../../../../shared/ui/icon/icon';
 
 @Component({
   selector: 'af-login-page',
-  imports: [ReactiveFormsModule, RouterLink, Button, Card],
+  imports: [ReactiveFormsModule, RouterLink, Button, Card, Icon],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })

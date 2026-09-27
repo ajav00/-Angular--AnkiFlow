@@ -4,10 +4,11 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { Button } from '../../../../shared/ui/button/button';
 import { Card } from '../../../../shared/ui/card/card';
+import { Icon } from '../../../../shared/ui/icon/icon';
 
 @Component({
   selector: 'af-register-page',
-  imports: [ReactiveFormsModule, RouterLink, Button, Card],
+  imports: [ReactiveFormsModule, RouterLink, Button, Card, Icon],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
 })
@@ -23,7 +24,6 @@ export class RegisterPage {
     userName: ['', Validators.required],
     password: ['', Validators.required],
     name: ['', Validators.required],
-    lastName: ['', Validators.required],
   });
 
   protected submit(): void {

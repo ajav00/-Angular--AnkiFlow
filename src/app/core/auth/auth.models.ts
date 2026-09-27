@@ -7,7 +7,6 @@ export interface RegistrationRequest {
   readonly userName: string;
   readonly password: string;
   readonly name: string;
-  readonly lastName: string;
 }
 
 export interface AuthResponse {

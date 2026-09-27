@@ -1,4 +1,4 @@
-import { HttpEventType } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -67,8 +67,9 @@ export class AnkiImportPage {
           this.step.set('done');
         }
       },
-      error: () => {
-        this.errorMessage.set('Could not import the Anki package. Please try again.');
+      error: (err: HttpErrorResponse) => {
+        const detail = typeof err.error === 'string' ? err.error : null;
+        this.errorMessage.set(detail ?? 'Could not import the Anki package. Please try again.');
         this.step.set('error');
       },
     });

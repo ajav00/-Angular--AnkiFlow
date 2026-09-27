@@ -1,5 +1,14 @@
 <div class="login-page">
   <af-card class="login-card">
+    <a class="brand" routerLink="/">
+      <span class="brand__mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span class="brand__name">AnkiFlow</span>
+    </a>
+
     <span class="eyebrow">Welcome back</span>
     <h1>Sign in to AnkiFlow</h1>
     <p>Keep your study streak going.</p>
@@ -21,6 +30,7 @@
 
       <af-button type="submit" [disabled]="submitting()">
         {{ submitting() ? 'Signing in…' : 'Sign in' }}
+        <af-icon name="arrow-right" [size]="18" />
       </af-button>
     </form>
 
